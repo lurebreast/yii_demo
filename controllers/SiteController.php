@@ -209,4 +209,23 @@ class SiteController extends Controller
     {
         return \Yii::$app->response->sendContentAsFile('aa', 'aa.txt')->send();
     }
+
+    public function actionLog()
+    {
+        Yii::warning('start calculating average revenue');
+    }
+
+    public function actionProfile()
+    {
+        \Yii::beginProfile('myBenchmark');
+
+        for($i = 1; $i < 100; $i++) {
+            var_dump(rand(1, 100));
+        }
+
+
+        \Yii::endProfile('myBenchmark');
+
+        return $this->render('profile');
+    }
 }
