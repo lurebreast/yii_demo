@@ -166,4 +166,47 @@ class SiteController extends Controller
             return $this->render('entry', ['model' => $model]);
         }
     }
+
+    public function actionResponse()
+    {
+        throw new \yii\web\NotFoundHttpException;
+    }
+
+    public function actionJson()
+    {
+        $response = Yii::$app->response;
+        $response->format = \yii\web\Response::FORMAT_JSON;
+        $response->data = ['message' => 'hello world'];
+    }
+
+    public function actionInfo()
+    {
+        \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+        return [
+            'message' => 'hello world',
+            'code' => 100,
+        ];
+    }
+
+    public function actionInfo1()
+    {
+        return \Yii::createObject([
+            'class' => 'yii\web\Response',
+            'format' => \yii\web\Response::FORMAT_JSON,
+            'data' => [
+                'message' => 'hello world',
+                'code' => 100,
+            ],
+        ]);
+    }
+
+    public function actionOld()
+    {
+        return $this->redirect('https://bbs.hupu.com/all-gambia');
+    }
+
+    public function actionContentFile()
+    {
+        return \Yii::$app->response->sendContentAsFile('aa', 'aa.txt')->send();
+    }
 }
