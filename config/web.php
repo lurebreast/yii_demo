@@ -43,14 +43,14 @@ $config = [
             ],
         ],
         'db' => $db,
-        /*
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
-            'rules' => [
-            ],
+//            'enableStrictParsing' => true,
+            'suffix' => '.html',
+//            'rules' => [
+//            ],
         ],
-        */
         'assetManager' => [
             'appendTimestamp' => true,
         ],

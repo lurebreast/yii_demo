@@ -10,6 +10,7 @@ use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
 use app\models\EntryForm;
+use yii\helpers\Url;
 
 class SiteController extends Controller
 {
@@ -130,6 +131,24 @@ class SiteController extends Controller
     public function actionSay($message = 'Hello')
     {
         return $this->render('say', ['message' => $message]);
+    }
+
+    public function actionUrl()
+    {
+        // 创建一个普通的路由URL：/index.php?r=post%2Findex
+        echo Url::to(['post/index']);
+
+// 创建一个带路由参数的URL：/index.php?r=post%2Fview&id=100
+        echo Url::to(['post/view', 'id' => 100]);
+
+// 创建一个带锚定的URL：/index.php?r=post%2Fview&id=100#content
+        echo Url::to(['post/view', 'id' => 100, '#' => 'content']);
+
+// 创建一个绝对路径URL：http://www.example.com/index.php?r=post%2Findex
+        echo Url::to(['post/index'], true);
+
+// 创建一个带https协议的绝对路径URL：https://www.example.com/index.php?r=post%2Findex
+        echo Url::to(['post/index'], 'https');
     }
 
     public function actionEntry()
